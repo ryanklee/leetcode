@@ -30,14 +30,15 @@ function hd(x, y){
   var yBin = Array();
   var hammingDistance = 0;
   
-  while (divXLeft > 0) {
+  while (divXLeft >= 0) {
     xBin.unshift(divXLeft % 2);
     if (divXLeft % 2 > 0){
        divXLeft = divXLeft / 2 - .5;
     }
     else divXLeft = divXLeft / 2;
+    if (divXLeft === 0) break; 
   }
-  console.log(xBin);
+  
   
   while (divYLeft > 0) {
     yBin.unshift(divYLeft % 2);
@@ -45,9 +46,20 @@ function hd(x, y){
        divYLeft = divYLeft / 2 - .5;
     }
     else divYLeft = divYLeft / 2;
+    if (divYLeft === 0) break;
   }
-  console.log(yBin);
 
+  while (xBin.length < yBin.length) {
+    xBin.unshift(0);
+  }
+  
+  while (yBin.length < xBin.length) {
+    yBin.unshift(0);
+  }
+  
+  console.log(xBin);
+  console.log(yBin);
+  
 for (var i = 0; i < xBin.length || i < yBin.length; i++){
   if (xBin[i] != yBin[i]){
     hammingDistance = hammingDistance + 1;
@@ -57,4 +69,3 @@ for (var i = 0; i < xBin.length || i < yBin.length; i++){
 return hammingDistance;
 
 }
-
